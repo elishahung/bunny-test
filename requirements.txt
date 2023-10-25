@@ -1,0 +1,4 @@
+black==23.7.0
+python-dotenv~=1.0.0
+elasticsearch==8.10.1
+requests==2.31.0
