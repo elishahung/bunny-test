@@ -5,13 +5,14 @@ import traceback
 from datetime import datetime
 
 
-def log_status(status: str, error: str = None):
+def log_status(status: str, error: str = None, upload_time: float = None):
     elastic_client.index(
         index="bunny-external-test",
         document={
             "@timestamp": datetime.utcnow(),
             "status": status,
             "error": error,
+            "upload_time": upload_time,
         },
     )
 
@@ -19,10 +20,11 @@ def log_status(status: str, error: str = None):
 if __name__ == "__main__":
     while True:
         start = perf_counter()
+        upload_time = None
 
         try:
-            upload_bunny()
-            log_status("success")
+            upload_time = upload_bunny()
+            log_status("success", None, upload_time)
         except Exception as e:
             print(e)
             print(traceback.format_exc())
