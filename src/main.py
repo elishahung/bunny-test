@@ -1,4 +1,4 @@
-from bunny import upload_bunny
+from r2 import upload_r2
 from elastic import elastic_client
 from time import perf_counter, sleep
 import traceback
@@ -23,7 +23,7 @@ if __name__ == "__main__":
         upload_time = None
 
         try:
-            upload_time = upload_bunny()
+            upload_time = upload_r2()
             log_status("success", None, upload_time)
         except Exception as e:
             print(e)
